@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Dashboard</h2>
+    <p>Welcome, {{ username }}!</p>
+    <h3>Available Products</h3>
+    <div class="product">
+        <h4>Adenium Plant</h4>
+        <p>Description: Beautiful desert rose plant.</p>
+        <p>Price: $10.00</p>
+        <img src="/static/adenium.jpg" alt="Adenium Plant">
+    </div>
+    <div class="product">
+        <h4>Bougenveliya Plant</h4>
+        <p>Description: Colorful bougainvillea plant.</p>
+        <p>Price: $15.00</p>
+        <img src="/static/bougenveliya.jpg" alt="Bougenveliya Plant">
+    </div>
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>
