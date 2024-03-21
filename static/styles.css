@@ -20,6 +20,22 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-info p {
+    margin: 0;
+}
+
+.user-info a {
+    text-decoration: none;
+    color: #007bff;
+}
+
 h1, h2, h3, h4 {
     margin-bottom: 20px;
     color: #007bff;

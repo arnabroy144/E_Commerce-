@@ -10,18 +10,25 @@
     <h2>Dashboard</h2>
     <p>Welcome, {{ username }}!</p>
     <h3>Available Products</h3>
+    {% for product in products %}
     <div class="product">
-        <h4>Adenium Plant</h4>
-        <p>Description: Beautiful desert rose plant.</p>
-        <p>Price: $10.00</p>
-        <img src="/static/adenium.jpg" alt="Adenium Plant">
+        <h4>{{ product[1] }}</h4>
+        <p>Description: {{ product[2] }}</p>
+        <p>Price: {{ product[3] }}</p>
+        <img src="{{ product[4] }}" alt="{{ product[1] }}">
+        <!-- Add to cart button -->
+        <form action="/add_to_cart" method="post">
+            <input type="hidden" name="product_id" value="{{ product[0] }}">
+            <button type="submit">Add to Cart</button>
+        </form>
     </div>
-    <div class="product">
-        <h4>Bougenveliya Plant</h4>
-        <p>Description: Colorful bougainvillea plant.</p>
-        <p>Price: $15.00</p>
-        <img src="/static/bougenveliya.jpg" alt="Bougenveliya Plant">
+    {% endfor %}
+    <div class="container">
+        <div class="user-info">
+            <p>{{ username }}</p>
+            <a href="/logout">Logout</a>
+        </div>
     </div>
-    <p><a href="/logout">Logout</a></p>
+    <a href="/view_cart">View Cart</a>
 </body>
 </html>

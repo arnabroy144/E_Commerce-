@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Cart</title>
+    <link rel="stylesheet" type="text/css" href="/static/styles.css">
+    <style>
+        .quantity-btn {
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>View Cart</h2>
+    <p>Welcome, {{ username }}!</p>
+    <h3>Your cart</h3>
+    {% if cart %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in cart %}
+                    <tr>
+                        <td>{{ item[1] }}</td> <!-- Product Name -->
+                        <td>
+                            <button class="quantity-btn" onclick="removeQuantity('{{ item[0] }}')">-</button>
+                            <span id="quantity_{{ item[0] }}">{{ item[2] }}</span> <!-- Quantity -->
+                            <button class="quantity-btn" onclick="addQuantity('{{ item[0] }}')">+</button>
+                        </td>
+                        <td>Rs{{ item[3] }}</td> <!-- Price -->
+                        <td>Rs{{ item[3] * item[2] }}</td> <!-- Total -->
+                        <td><a href="/remove_from_cart/{{ item[0] }}">Remove</a></td> <!-- Product ID -->
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <p>Total: Rs{{ total }}</p>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+    <a href="/dashboard">Back to Dashboard</a>
+    <a href="/logout">Logout</a>
+
+    <script>
+        function addQuantity(itemId) {
+            var quantityElem = document.getElementById('quantity_' + itemId);
+            var currentQuantity = parseInt(quantityElem.innerText);
+            quantityElem.innerText = currentQuantity + 1;
+        }
+
+        function removeQuantity(itemId) {
+            var quantityElem = document.getElementById('quantity_' + itemId);
+            var currentQuantity = parseInt(quantityElem.innerText);
+            if (currentQuantity > 1) {
+                quantityElem.innerText = currentQuantity - 1;
+            }
+        }
+    </script>
+</body>
+</html>
